@@ -1,0 +1,12 @@
+appId: org.me2u.notebook
+productName: From Me to You – Notebook
+copyright: Copyright © 2019 Jan Kaßel
+directories:
+  output: dist
+  buildResources: resources
+files:
+  - from: .
+    filter:
+      - package.json
+      - app
+publish: null

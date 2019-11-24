@@ -1,4 +1,8 @@
 node_modules
+*.log
+.next
+app
+dist
+.DS_Store
 /.data
 /repos.json
-
