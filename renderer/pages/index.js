@@ -1,60 +1,68 @@
 import electron from 'electron'
-import React, {useState, useEffect} from 'react'
+import React from 'react'
+import styled from 'styled-components'
+
 import Head from 'next/head'
 import Link from 'next/link'
+import ListView from '../components/ListView'
 
 // prevent SSR webpacking
 const ipcRenderer = electron.ipcRenderer || false
 
+const mockItems = [
+  {
+    title: 'My First Notebook',
+    docUrl: 'foobar',
+  },
+  {
+    title: 'My First Notebook',
+    docUrl: 'foobar',
+  },
+  {
+    title: 'My First Notebook',
+    docUrl: 'foobar',
+  },
+  {
+    title: 'My First Notebook',
+    docUrl: 'foobar',
+  },
+  {
+    title: 'My First Notebook',
+    docUrl: 'foobar',
+  },
+  {
+    title: 'My First Notebook',
+    docUrl: 'foobar',
+  },
+  {
+    title: 'My First Notebook',
+    docUrl: 'foobar',
+  },
+  {
+    title: 'My First Notebook',
+    docUrl: 'foobar',
+  },
+  {
+    title: 'My First Notebook',
+    docUrl: 'foobar',
+  },
+]
+
+const Container = styled.div`
+  display: flex;
+  flex-flow: row;
+  width: 100vw;
+  height: 100%;
+  min-height: 100vh;
+`
+
 const Home = () => {
-  const [message, setMessage] = useState('')
-  const [messages, setMessages] = useState([])
-
-  const onChange = e => setMessage(e.target.value)
-  const onSubmit = e => {
-    e.preventDefault()
-    if (ipcRenderer) {
-      ipcRenderer.send('add-message', message)
-      setMessages([...messages, message])
-      setMessage('') // clear the input value
-    }
-  }
-
-  useEffect(() => {
-    // componentDidMount()
-    if (ipcRenderer) {
-      setMessages(ipcRenderer.sendSync('get-messages'))
-    }
-
-    return () => {
-      // componentWillUnmount()
-    }
-  }, [])
-
   return (
-    <React.Fragment>
-      <Head>
-        <title>Home - Nextron (store-data)</title>
-      </Head>
-      <div>
-        <p>
-          ⚡ Electron + Next.js ⚡ -
-          <Link href="/next">
-            <a>Go to next page</a>
-          </Link>
-        </p>
-        <hr />
-        <h2>Enter your message:</h2>
-        <form onSubmit={onSubmit}>
-          <input type="text" value={message} onChange={onChange} />
-        </form>
-        <ul>
-          {messages.map((m, i) => (
-            <li key={i}>{m}</li>
-          ))}
-        </ul>
-      </div>
-    </React.Fragment>
+    <>
+      <Container>
+        <ListView items={mockItems} />
+      </Container>
+    </>
   )
 }
 
