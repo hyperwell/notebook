@@ -76,6 +76,9 @@ async function showNotebook({repo, docUrls}) {
   }
 
   console.log(JSON.stringify(await repo.doc(docUrl), null, 2))
+
+  cb.writeSync(docUrl)
+  console.log('\nCopied the document URL to clipboard.')
 }
 
 async function removeNotebook(repoStore, {repo, id, docUrls}) {
@@ -93,21 +96,54 @@ async function removeNotebook(repoStore, {repo, id, docUrls}) {
   console.log(`Removed notebook \`${docUrl}\`.`)
 }
 
-async function addNotebook(repoStore, {id}) {
-  const title = (
-    await inquirer.prompt([
-      {
-        type: 'input',
-        name: 'title',
-        message: 'Notebook title (optional):',
-      },
-    ])
-  ).title
+async function createNotebook(repoStore, {id}) {
+  const {title} = await inquirer.prompt([
+    {
+      type: 'input',
+      name: 'title',
+      message: 'Notebook title (optional):',
+    },
+  ])
 
   const docUrl = await repoStore.addDoc(id, title)
   cb.writeSync(docUrl)
-  console.log(`The new notebook's URL (copied to clipboard):
+  console.log(`The newly created notebook's URL (copied to clipboard):
 ${docUrl}`)
+}
+
+async function addExistingNotebook(repoStore, {id}) {
+  const {docUrl} = await inquirer.prompt([
+    {
+      type: 'input',
+      name: 'docUrl',
+      message: 'Document URL:',
+    },
+  ])
+
+  await repoStore.addDoc(id, null, docUrl)
+  console.log('Added notebook.')
+}
+
+async function forkNotebook(repoStore, {id, repo}) {
+  const {docUrl, title} = await inquirer.prompt([
+    {
+      type: 'input',
+      name: 'docUrl',
+      message: 'Document URL:',
+    },
+    {
+      type: 'input',
+      name: 'title',
+      message: "New notebook's title (optional):",
+    },
+  ])
+
+  const forkDocUrl = await repoStore.addDoc(id, title)
+
+  await repo.merge(forkDocUrl, docUrl)
+  cb.writeSync(forkDocUrl)
+  console.log(`The notebook fork's URL (copied to clipboard):
+${forkDocUrl}`)
 }
 
 async function main() {
@@ -137,10 +173,13 @@ async function main() {
             'List notebooks',
             'Show notebook',
             new inquirer.Separator(),
-            'Add notebook',
+            'Create notebook',
+            'Add existing notebook',
+            'Fork notebook',
             'Remove notebook',
             new inquirer.Separator(),
             'Exit',
+            new inquirer.Separator(),
           ],
         },
       ])
@@ -155,8 +194,16 @@ async function main() {
         await showNotebook(entry)
         break
 
-      case 'Add notebook':
-        await addNotebook(repoStore, entry)
+      case 'Create notebook':
+        await createNotebook(repoStore, entry)
+        break
+
+      case 'Add existing notebook':
+        await addExistingNotebook(repoStore, entry)
+        break
+
+      case 'Fork notebook':
+        await forkNotebook(repoStore, entry)
         break
 
       case 'Remove notebook':
