@@ -118,7 +118,7 @@ async function createNotebook(repoStore, {id}) {
 ${docUrl}`)
 }
 
-async function addExistingNotebook(repoStore, {id}) {
+async function addExistingNotebook(repoStore, {id, repo}) {
   const {docUrl} = await inquirer.prompt([
     {
       type: 'input',
@@ -127,6 +127,7 @@ async function addExistingNotebook(repoStore, {id}) {
     },
   ])
 
+  await repo.doc(docUrl)
   await repoStore.addDoc(id, null, docUrl)
   console.log('Added notebook.')
 }
@@ -145,6 +146,7 @@ async function forkNotebook(repoStore, {id, repo}) {
     },
   ])
 
+  await repo.doc(docUrl)
   const forkDocUrl = await repoStore.addDoc(id, title)
 
   await repo.merge(forkDocUrl, docUrl)
