@@ -19,6 +19,13 @@ const parseMapId = mapId => {
   return res ? res[1] : null
 }
 
+function cbcopy(value) {
+  if (process.env.NO_CLIPBOARD === '1') {
+    return
+  }
+  cb.writeSync(value)
+}
+
 async function getDocs(repo, docUrls) {
   const docs = []
   for (const docUrl of docUrls) {
@@ -77,7 +84,7 @@ async function showNotebook({repo, docUrls}) {
 
   console.log(JSON.stringify(await repo.doc(docUrl), null, 2))
 
-  cb.writeSync(docUrl)
+  cbcopy(docUrl)
   console.log('\nCopied the document URL to clipboard.')
 }
 
@@ -106,7 +113,7 @@ async function createNotebook(repoStore, {id}) {
   ])
 
   const docUrl = await repoStore.addDoc(id, title)
-  cb.writeSync(docUrl)
+  cbcopy(docUrl)
   console.log(`The newly created notebook's URL (copied to clipboard):
 ${docUrl}`)
 }
@@ -141,7 +148,7 @@ async function forkNotebook(repoStore, {id, repo}) {
   const forkDocUrl = await repoStore.addDoc(id, title)
 
   await repo.merge(forkDocUrl, docUrl)
-  cb.writeSync(forkDocUrl)
+  cbcopy(forkDocUrl)
   console.log(`The notebook fork's URL (copied to clipboard):
 ${forkDocUrl}`)
 }
