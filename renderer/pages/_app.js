@@ -1,16 +1,7 @@
 import React from 'react'
 import App from 'next/app'
-import Layout from '../layout'
 
-export default class MyApp extends App {
-  render() {
-    const {Component, pageProps} = this.props
+import 'normalize.css'
+import '../layout/index.css'
 
-    return (
-      <>
-        <Layout />
-        <Component {...pageProps} />
-      </>
-    )
-  }
-}
+export default App

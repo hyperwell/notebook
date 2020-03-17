@@ -1,0 +1,45 @@
+.list {
+  display: flex;
+  flex-flow: column;
+  width: 200px;
+  height: 100vh;
+  margin: 0;
+  border-right: 1px solid #ccc;
+  padding: 0;
+  overflow-y: scroll;
+
+  list-style: none;
+  background: white;
+}
+
+.item {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.notebook {
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
+  border-bottom: 1px solid #ccc;
+  padding: 7px 15px;
+
+  font: 400 12px/100% 'Inter', sans-serif;
+  text-decoration: none;
+  color: inherit;
+}
+
+.notebook:hover {
+  background-color: #eee;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 100%;
+}
+
+.meta {
+  color: #ccc;
+}

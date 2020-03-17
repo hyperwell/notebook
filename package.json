@@ -26,10 +26,10 @@
     "hyperswarm": "^2.8.0",
     "inquirer": "^7.1.0",
     "inquirer-autocomplete-prompt": "^1.0.2",
+    "normalize.css": "^8.0.1",
     "uuid": "^3.4.0"
   },
   "devDependencies": {
-    "@zeit/next-css": "^1.0.1",
     "electron": "^7.1.14",
     "electron-builder": "^21.2.0",
     "husky": "^3.1.0",
@@ -40,9 +40,7 @@
     "nextron": "^5.14.4",
     "prettier": "^1.19.1",
     "react": "^16.13.0",
-    "react-dom": "^16.13.0",
-    "styled-components": "^4.4.1",
-    "styled-normalize": "^8.0.7"
+    "react-dom": "^16.13.0"
   },
   "engines": {
     "node": ">=12.4.0"
