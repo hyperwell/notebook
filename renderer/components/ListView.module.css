@@ -28,10 +28,11 @@
   font: 400 12px/100% 'Inter', sans-serif;
   text-decoration: none;
   color: inherit;
+  cursor: default;
 }
 
 .notebook:hover {
-  background-color: #eee;
+  background-color: rgb(245, 245, 245);
 }
 
 .title {
@@ -42,4 +43,5 @@
 
 .meta {
   color: #ccc;
+  font-style: normal;
 }
