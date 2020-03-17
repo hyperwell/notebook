@@ -1,10 +1,10 @@
 import electron from 'electron'
 import React from 'react'
-import styled from 'styled-components'
 
 import Head from 'next/head'
 import Link from 'next/link'
 import ListView from '../components/ListView'
+import styles from './Home.module.css'
 
 // prevent SSR webpacking
 const ipcRenderer = electron.ipcRenderer || false
@@ -48,20 +48,12 @@ const mockItems = [
   },
 ]
 
-const Container = styled.div`
-  display: flex;
-  flex-flow: row;
-  width: 100vw;
-  height: 100%;
-  min-height: 100vh;
-`
-
 const Home = () => {
   return (
     <>
-      <Container>
+      <div className={styles.container}>
         <ListView items={mockItems} />
-      </Container>
+      </div>
     </>
   )
 }
