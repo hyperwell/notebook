@@ -12,7 +12,7 @@
     "dev": "nextron",
     "build": "nextron build",
     "postinstall": "exit 0; electron-builder install-app-deps",
-    "test": "exit 1"
+    "test": "echo 'No tests specified.'; exit 1"
   },
   "license": "MIT",
   "dependencies": {
