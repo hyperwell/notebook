@@ -1,15 +1,69 @@
-.list {
+.container {
   display: flex;
   flex-flow: column;
-  width: 200px;
+
+  width: 300px;
   height: 100vh;
+
   margin: 0;
-  border-right: 1px solid #ccc;
+  border-right: 1px solid rgb(225, 225, 226);
   padding: 0;
   overflow-y: scroll;
 
-  list-style: none;
+  background: rgb(245, 245, 245);
+}
+
+.title {
+  margin: 0;
+  padding: 18px 18px 8px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 100%;
+}
+
+.section {
+  width: 100%;
+  padding-top: 35px;
+}
+
+.section h6 {
+  margin: 0;
+  padding: 0 18px;
+
+  font-size: 14px;
+  font-weight: 500;
+  color: rgb(174, 174, 174);
+  cursor: default;
+}
+
+.searchWrapper {
+  padding: 12px 18px 0;
+}
+
+input.search {
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid rgb(225, 225, 225);
+  border-radius: 3px;
+  padding: 6px 8px;
+
+  font-size: 14px;
+  line-height: 100%;
   background: white;
+}
+
+input.search:focus,
+input.search:active {
+  border-width: 2px;
+  border-color: rgb(66, 142, 223);
+  padding: 5px 7px;
+  outline: none;
+}
+
+.list {
+  margin: 0;
+  padding: 8px 0 0;
+  list-style: none;
 }
 
 .item {
@@ -19,29 +73,32 @@
 }
 
 .notebook {
-  display: inline-block;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
   width: 100%;
   box-sizing: border-box;
-  border-bottom: 1px solid #ccc;
-  padding: 7px 15px;
+  padding: 10px 18px;
 
-  font: 400 12px/100% 'Inter', sans-serif;
   text-decoration: none;
+
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 100%;
+
   color: inherit;
   cursor: default;
 }
 
-.notebook:hover {
-  background-color: rgb(245, 245, 245);
+.name {
+  width: 100%;
 }
 
-.title {
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 100%;
-}
-
-.meta {
-  color: #ccc;
-  font-style: normal;
+.changeIndicator {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  background: rgb(66, 142, 223);
 }
