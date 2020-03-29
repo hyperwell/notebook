@@ -1,26 +1,20 @@
-import {v4 as uuid} from 'uuid'
-
 export const mockItems = [
   {
     name: 'My First Notebook',
-    docUrl: 'foobar',
+    docUrl: 'hypermerge:/foobar-1bc6ef',
     lastChangeDate: new Date(2019, 3, 20),
   },
   {
     name: 'Hafiz Transliteration',
-    docUrl: 'foobar',
+    docUrl: 'hypermerge:/foobar-b77efa',
     updates: true,
   },
   {
     name: 'Phyrenae Transcriptions',
-    docUrl: 'foobar',
+    docUrl: 'hypermerge:/foobar-791aca',
   },
   {
     name: 'Shakespeare Notes',
-    docUrl: 'foobar',
+    docUrl: 'hypermerge:/foobar-91ae5f',
   },
 ]
-
-for (const item of mockItems) {
-  item.docUrl = `hypermerge:/${uuid()}`
-}
