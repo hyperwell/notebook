@@ -91,6 +91,11 @@ input.search:active {
   cursor: default;
 }
 
+.active {
+  color: white;
+  background: rgb(66, 142, 223);
+}
+
 .name {
   width: 100%;
 }
@@ -101,4 +106,8 @@ input.search:active {
   height: 10px;
   border-radius: 10px;
   background: rgb(66, 142, 223);
+}
+
+.active .changeIndicator {
+  background: white;
 }
