@@ -34,7 +34,6 @@
     "electron": "^8.2.0",
     "electron-builder": "^22.4.1",
     "husky": "^4.2.3",
-    "inter-ui": "^3.12.1",
     "lint-staged": "^10.0.10",
     "next": "^9.3.2",
     "next-fonts": "^1.0.3",
