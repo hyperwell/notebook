@@ -9,6 +9,7 @@ export default function createWindow(windowName, options) {
     width: options.width,
     height: options.height,
   }
+  const preload = options.preload || false
   let state = {}
   let win
 
@@ -68,6 +69,7 @@ export default function createWindow(windowName, options) {
     ...state,
     webPreferences: {
       nodeIntegration: true,
+      ...(preload && {preload}),
     },
   })
 
